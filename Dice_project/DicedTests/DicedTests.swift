@@ -24,6 +24,12 @@ class DicedTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        var dice = [Die]()
+        for _ in 1...5{
+            dice.append(Die(possibleValues:["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]))
+        }
+        XCTAssertEqual(dice[0].value,"⚄")
+        
     }
     
     func testPerformanceExample() {
