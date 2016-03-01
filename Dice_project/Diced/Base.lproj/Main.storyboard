@@ -30,7 +30,7 @@
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76Q-KM-fau">
                                 <rect key="frame" x="91" y="44" width="63" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
-                                <state key="normal" title="⚁"/>
+                                <state key="normal" title="⚀"/>
                                 <connections>
                                     <action selector="dieTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u94-x9-OfU"/>
                                 </connections>
@@ -38,7 +38,7 @@
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXv-3F-Xp5">
                                 <rect key="frame" x="162" y="44" width="63" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
-                                <state key="normal" title="⚂"/>
+                                <state key="normal" title="⚀"/>
                                 <connections>
                                     <action selector="dieTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dNl-Gn-use"/>
                                 </connections>
@@ -46,7 +46,7 @@
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrD-bR-2Cx">
                                 <rect key="frame" x="233" y="44" width="63" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
-                                <state key="normal" title="⚃"/>
+                                <state key="normal" title="⚀"/>
                                 <connections>
                                     <action selector="dieTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uFP-EC-qFc"/>
                                 </connections>
@@ -54,7 +54,7 @@
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJ7-kZ-0dV">
                                 <rect key="frame" x="304" y="44" width="63" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
-                                <state key="normal" title="⚄"/>
+                                <state key="normal" title="⚀"/>
                                 <connections>
                                     <action selector="dieTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Xt-of-5ec"/>
                                 </connections>
@@ -65,6 +65,13 @@
                                 <state key="normal" title="Roll"/>
                                 <connections>
                                     <action selector="roll" destination="BYZ-38-t0r" eventType="touchUpInside" id="612-I0-txF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37c-y6-qL8">
+                                <rect key="frame" x="281" y="342" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="Reset" destination="BYZ-38-t0r" eventType="touchUpInside" id="SVn-0L-3yi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -81,6 +88,7 @@
                             <constraint firstItem="wrD-bR-2Cx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" multiplier="16:9" constant="8" id="GKS-69-t4i"/>
                             <constraint firstItem="vXv-3F-Xp5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" multiplier="16:9" constant="8" id="PG5-LM-CpN"/>
                             <constraint firstItem="vXv-3F-Xp5" firstAttribute="leading" secondItem="76Q-KM-fau" secondAttribute="trailing" constant="8" id="T8P-T5-383"/>
+                            <constraint firstItem="37c-y6-qL8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XMs-zg-pGQ"/>
                             <constraint firstItem="CeY-Mv-01k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xlh-SX-iOz"/>
                             <constraint firstItem="wrD-bR-2Cx" firstAttribute="height" secondItem="q4j-aQ-15e" secondAttribute="height" id="bMs-e4-n8Y"/>
                             <constraint firstItem="vXv-3F-Xp5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bhb-vJ-N7E"/>
@@ -94,6 +102,7 @@
                             <constraint firstItem="UJ7-kZ-0dV" firstAttribute="width" secondItem="q4j-aQ-15e" secondAttribute="width" id="svp-77-Gfl"/>
                             <constraint firstItem="CeY-Mv-01k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tfT-4B-BaH"/>
                             <constraint firstItem="76Q-KM-fau" firstAttribute="height" secondItem="q4j-aQ-15e" secondAttribute="height" id="wkD-2k-42n"/>
+                            <constraint firstItem="37c-y6-qL8" firstAttribute="top" secondItem="CeY-Mv-01k" secondAttribute="bottom" constant="16" id="x1X-Mi-7RM"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
