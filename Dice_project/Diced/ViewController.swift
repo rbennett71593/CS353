@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     var dice = [Die]()
-    var cupFilled = false
     
     @IBOutlet var dicons: [UIButton]!
     
@@ -20,10 +19,12 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fillCup(5)
+    }
+    
     @IBAction func roll() {
-        if !cupFilled {
-            fillCup(5)
-        }
         for d in dice{
             d.roll()
         }
@@ -40,9 +41,16 @@ class ViewController: UIViewController {
             dice[sender.tag].freeze(true)
             sender.setTitleColor(UIColor.redColor(), forState: .Normal)
         }
-        
     }
     
+    @IBAction func Reset() {
+        for d in dice {
+            d.freeze(false)
+        }
+        for i in dicons {
+            i.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        }
+    }
     
 
 
