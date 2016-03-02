@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     
     var isNewEntry = true
+    var isErrorState = false
     var decimalEntered = false
     var historyAdding = false
     
@@ -23,53 +24,61 @@ class ViewController: UIViewController {
     
     
     @IBAction func appendDigit(sender: UIButton) {
-        let digit = sender.currentTitle!
-        if digit == "." {
-            if !decimalEntered {
-                // Decimal has not yet been entered in this entry
+        if !isErrorState{
+            let digit = sender.currentTitle!
+            if digit == "." {
+                if !decimalEntered {
+                    // Decimal has not yet been entered in this entry
+                    if isNewEntry {
+                        display.text = "0."
+                        isNewEntry = false
+                    } else {
+                        display.text = display.text! + digit
+                    }
+                    decimalEntered = true
+                }
+            } else {
                 if isNewEntry {
-                    display.text = "0."
+                    display.text = digit
                     isNewEntry = false
                 } else {
                     display.text = display.text! + digit
                 }
-                decimalEntered = true
-            }
-        } else {
-            if isNewEntry {
-                display.text = digit
-                isNewEntry = false
-            } else {
-                display.text = display.text! + digit
             }
         }
-        
     }
     
     var operandStack = Array<Double>()
     
     @IBAction func enter() {
-        isNewEntry = true
-        decimalEntered = false
-        if let result = brain.pushOperand(displayValue){
-            displayValue = result
-            if historyAdding {
-                history.text! += ", \(result)"
+        if !isErrorState{
+            isNewEntry = true
+            decimalEntered = false
+            if let result = brain.pushOperand(displayValue!){
+                displayValue = result
+                if historyAdding {
+                    history.text! += ", \(result)"
+                } else {
+                    history.text! += "\(result)"
+                    historyAdding = true
+                }
             } else {
-                history.text! += "\(result)"
-                historyAdding = true
+                displayValue = 0
             }
-        } else {
-            displayValue = 0
         }
     }
     
-    var displayValue: Double {
+    var displayValue: Double? {
         get {
             return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
         }
         set{
-            display.text = "\(newValue)"
+            if newValue == nil{
+                display.text = "Error - Press clear"
+                isErrorState = true
+            } else {
+                display.text = "\(newValue!)"
+            }
             isNewEntry = true
         }
     }
@@ -96,7 +105,7 @@ class ViewController: UIViewController {
             if let result = brain.performOperation(operation){
                 displayValue = result
             } else {
-                displayValue = 0
+                displayValue = nil
             }
         }
         
@@ -105,6 +114,8 @@ class ViewController: UIViewController {
     @IBAction func clear() {
         brain.clear()
         displayValue = 0
+        isErrorState = false
+        historyAdding = false
         history.text = ""
     }
     

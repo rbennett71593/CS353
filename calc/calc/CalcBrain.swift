@@ -14,6 +14,7 @@ class CalculatorBrain {
         case Operand(Double)
         case UnaryOperation(String, Double -> Double)
         case BinaryOperation(String, (Double, Double)->Double)
+        //case ConstantOperation(Double) // maybe this should be a string?
         
         var description: String {
             get {
@@ -24,6 +25,8 @@ class CalculatorBrain {
                     return symbol
                 case .BinaryOperation(let symbol, _):
                     return symbol
+//                case .ConstantOperation(let constOp):
+//                    return "\(constOp)"
                 }
             }
         }
