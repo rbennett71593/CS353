@@ -23,6 +23,53 @@ class ViewController: UIViewController {
     var brain = CalculatorBrain()
     
     
+    @IBAction func backspace() {
+        if !isNewEntry {
+            if display.text!.characters.count > 0 {
+                var text = display.text!
+                text = String(text.characters.dropLast()) // I don't know why this has to be written with String(..) around it, but that's what stack overflow says... Figure out what this means sometime.
+                if display.text!.characters.count > 0 {
+                    display.text = text
+                } else {
+                    display.text = "0"
+                }
+            }
+        } else {
+            if let result = brain.removeLast() {
+                displayValue = result
+            } else {
+                displayValue = 0
+            }
+            history.text = historyValue
+        }
+    }
+    
+    @IBAction func storeVar() {
+        if let value = displayValue {
+            brain.variableValues["M"] = value
+        }
+        isNewEntry = true
+        if let result = brain.evaluate() {
+            displayValue = result
+        } else {
+            displayValue = nil
+        }
+        history.text = historyValue
+    }
+    
+    @IBAction func retrieveVar() {
+        if let value = brain.pushOperand("M") {
+            displayValue = value
+        } else {
+            displayValue = nil
+        }
+
+        history.text = historyValue
+    }
+    
+    
+    
+    
     @IBAction func appendDigit(sender: UIButton) {
         if !isErrorState{
             let digit = sender.currentTitle!
@@ -46,6 +93,7 @@ class ViewController: UIViewController {
                 }
             }
         }
+        history.text = historyValue
     }
     
     var operandStack = Array<Double>()
@@ -56,15 +104,17 @@ class ViewController: UIViewController {
             decimalEntered = false
             if let result = brain.pushOperand(displayValue!){
                 displayValue = result
-                if historyAdding {
-                    history.text! += ", \(result)"
-                } else {
-                    history.text! += "\(result)"
-                    historyAdding = true
-                }
+                
+//                if historyAdding {
+//                    history.text! += ", \(result)"
+//                } else {
+//                    history.text! += "\(result)"
+//                    historyAdding = true
+//                }
             } else {
                 displayValue = 0
             }
+            history.text = historyValue
         }
     }
     
@@ -82,25 +132,30 @@ class ViewController: UIViewController {
             isNewEntry = true
         }
     }
+    var historyValue: String {
+        get{
+            return brain.description
+        }
+    }
 
     @IBAction func operate(sender: UIButton) {
         if !isNewEntry {
             enter()
         }
         if let operation = sender.currentTitle {
+//            
+//            if historyAdding {
+//                history.text! += ", " + operation
+//            } else {
+//                history.text! += operation
+//                historyAdding = true
+//            }
             
-            if historyAdding {
-                history.text! += ", " + operation
-            } else {
-                history.text! += operation
-                historyAdding = true
-            }
             
-            
-            if operation == "π" {
-                displayValue = M_PI
-                enter()
-            }
+//            if operation == "π" {
+//                displayValue = M_PI
+//                enter()
+//            }
             
             if let result = brain.performOperation(operation){
                 displayValue = result
@@ -108,6 +163,7 @@ class ViewController: UIViewController {
                 displayValue = nil
             }
         }
+        history.text = historyValue
         
     }
     
@@ -115,8 +171,8 @@ class ViewController: UIViewController {
         brain.clear()
         displayValue = 0
         isErrorState = false
-        historyAdding = false
-        history.text = ""
+//        historyAdding = false
+        history.text = "="
     }
     
 
