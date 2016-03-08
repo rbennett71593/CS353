@@ -41,7 +41,7 @@ class CalculatorBrain {
                 case .BinaryOperation(_, let orderOfOperations, _):
                     // only binary operations have order right now
                     // do any unary operations have order? I don't think so...
-                    // if they do, then they're probably order 0
+                    // if they do, then they're probably first priority
                     return orderOfOperations
                 default:
                     return Int.max
@@ -83,6 +83,7 @@ class CalculatorBrain {
             switch  op {
             case .Operand(let operand):
                return (operand, remainingOps)
+                
             case .UnaryOperation(_, let operation):
                 let operandEvaluation = evaluate(remainingOps)
                 if let operand = operandEvaluation.result{
@@ -170,8 +171,8 @@ class CalculatorBrain {
                 return (operand.description, ops, currentOp.orderOfOperations)
             
             case .UnaryOperation(let symbol, _):
-                let (stringForRemainder,ops, _) = opString(ops)
-                return (symbol + "(" + stringForRemainder + ")", ops, currentOp.orderOfOperations)
+                let (operandString,ops, _) = opString(ops)
+                return (symbol + "(" + operandString + ")", ops, currentOp.orderOfOperations)
             
             case .BinaryOperation(let symbol, let ordOfOps, _):
                 var (op1String,remainingOps1, ordOfOps1) = opString(ops)
