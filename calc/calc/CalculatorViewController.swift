@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     
     var isNewEntry = true
-    var isErrorState = false
+    //var isErrorState = false
     var decimalEntered = false
     var historyAdding = false
     
@@ -59,9 +59,9 @@ class ViewController: UIViewController {
     
     @IBAction func retrieveVar() {
         if let value = brain.pushOperand("M") {
-            displayValue = value
+            // displayValue = value
         } else {
-            displayValue = nil
+            displayValue = 0
         }
 
         history.text = historyValue
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func appendDigit(sender: UIButton) {
-        if !isErrorState{
+        if !brain.isErrorState{
             let digit = sender.currentTitle!
             if digit == "." {
                 if !decimalEntered {
@@ -99,7 +99,7 @@ class ViewController: UIViewController {
     var operandStack = Array<Double>()
     
     @IBAction func enter() {
-        if !isErrorState{
+        if !brain.isErrorState{
             isNewEntry = true
             decimalEntered = false
             if let result = brain.pushOperand(displayValue!){
@@ -124,8 +124,10 @@ class ViewController: UIViewController {
         }
         set{
             if newValue == nil{
-                display.text = "Error - Press clear"
-                isErrorState = true
+                display.text = "---"
+                if !brain.lastWasVariable{
+                    brain.isErrorState = true
+                }
             } else {
                 display.text = "\(newValue!)"
             }
@@ -134,7 +136,7 @@ class ViewController: UIViewController {
     }
     var historyValue: String {
         get{
-            return brain.description
+            return brain.description + " = "
         }
     }
 
@@ -170,9 +172,23 @@ class ViewController: UIViewController {
     @IBAction func clear() {
         brain.clear()
         displayValue = 0
-        isErrorState = false
+        brain.isErrorState = false
 //        historyAdding = false
         history.text = "="
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        var destination = segue.destinationViewController as? UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            destination = navCon.visibleViewController
+        }
+
+        if let gvc = destination as? GraphViewController {
+            gvc.program = brain.program
+        }
+
+        
     }
     
 

@@ -10,6 +10,9 @@ import Foundation
 
 class CalculatorBrain {
     
+    var isErrorState = false
+    var lastWasVariable = false
+    
     private enum Op: CustomStringConvertible{
         case Operand(Double)
         case UnaryOperation(String, Double -> Double)
@@ -79,6 +82,7 @@ class CalculatorBrain {
         if !ops.isEmpty {
             var remainingOps = ops
             let op = remainingOps.removeLast()
+            lastWasVariable = false
             
             switch  op {
             case .Operand(let operand):
@@ -102,6 +106,8 @@ class CalculatorBrain {
                 
             case .Variable(let variable):
                 if let value = variableValues[variable]{
+                    isErrorState = false
+                    lastWasVariable = true
                     return (value, remainingOps)
                 }
                 return (nil, remainingOps)
@@ -158,7 +164,7 @@ class CalculatorBrain {
                 newOps = nextOps
             }
             
-            return desc + " = "
+            return desc
         }
     }
     
@@ -198,5 +204,37 @@ class CalculatorBrain {
         }
         return ("", ops, Int.max)
     }
+    
+    var program: AnyObject { // guaranteed to be a PropertyList
+        get {
+            return opStack.map { $0.description }
+        }
+        set {
+            if let opSymbols = newValue as? Array<String> {
+                var newOpStack = [Op]()
+                for opSymbol in opSymbols {
+                    if let op = knownOps[opSymbol] {
+                        newOpStack.append(op)
+                    } else if let operand = NSNumberFormatter().numberFromString(opSymbol)?.doubleValue {
+                        newOpStack.append(.Operand(operand))
+                    } else {
+                        newOpStack.append(.Variable(opSymbol))
+                    }
+                }
+                opStack = newOpStack
+            }
+        }
+    }
+    
+    func y(x: Double) -> Double? {
+        variableValues["M"] = x
+        if let y = evaluate() {
+            //println("x: \(x) y: \(y)")
+            return y
+        }
+        //println("x: \(x) y: is nil")
+        return nil
+    }
+
     
 }
