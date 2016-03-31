@@ -16,5 +16,6 @@ class colorboxTableviewCell: UITableViewCell {
     func configure(color: ColorBox){
         titleLabel.text = color.name
         descLabel.text = color.desc
+        colorView.backgroundColor = color.color
     }
 }

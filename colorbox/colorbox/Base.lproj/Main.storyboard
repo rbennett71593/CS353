@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-gm-KdI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-gm-KdI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -32,7 +32,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5c-S4-a2T">
                                                     <rect key="frame" x="41" y="24" width="75" height="75"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="F6v-Da-mR6"/>
                                                         <constraint firstAttribute="height" constant="75" id="upF-Mi-uAX"/>
@@ -41,7 +41,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpA-Bm-hf7">
                                                     <rect key="frame" x="132" y="24" width="460" height="26"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTk-vc-1mn">
@@ -49,7 +49,7 @@
                                                     <string key="text">Desc
 Line 2</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -78,6 +78,32 @@ Line 2</string>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Bc-gm-KdI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="5pM-RY-vSU"/>
+                            <constraint firstItem="7Bc-gm-KdI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="JED-Pc-aFf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Bc-gm-KdI" secondAttribute="bottom" id="K3A-W7-Nzw"/>
+                            <constraint firstItem="7Bc-gm-KdI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="PBs-Pr-LOu"/>
+                            <constraint firstItem="7Bc-gm-KdI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="V5n-7D-VqU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Bc-gm-KdI" secondAttribute="bottom" id="XR3-l6-XzF"/>
+                            <constraint firstItem="7Bc-gm-KdI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ydn-td-bmQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Bc-gm-KdI" secondAttribute="trailing" id="cgh-Li-YxB"/>
+                            <constraint firstAttribute="trailing" secondItem="7Bc-gm-KdI" secondAttribute="trailing" id="dvH-Hm-WIH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Bc-gm-KdI" secondAttribute="bottom" id="hvQ-wm-ccf"/>
+                            <constraint firstItem="7Bc-gm-KdI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="pfc-2X-nqV"/>
+                            <constraint firstItem="7Bc-gm-KdI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="sNv-d0-Cp0"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5pM-RY-vSU"/>
+                                <exclude reference="JED-Pc-aFf"/>
+                                <exclude reference="PBs-Pr-LOu"/>
+                                <exclude reference="V5n-7D-VqU"/>
+                                <exclude reference="cgh-Li-YxB"/>
+                                <exclude reference="sNv-d0-Cp0"/>
+                                <exclude reference="K3A-W7-Nzw"/>
+                                <exclude reference="XR3-l6-XzF"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="XtO-it-3cB" id="7fC-Ai-Obq"/>
